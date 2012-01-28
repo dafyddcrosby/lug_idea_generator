@@ -1,10 +1,6 @@
-<html>
-<head>
-<title>You should do a LUG talk on...</title>
-</head>
-<body>
-<br>
 <?php
+// Copyright 2011, Dafydd Crosby, dafyddcrosby.com
+// Licensed under the Eiffel Forum License 2.
 
 $filename = 'ideas.txt';
 $handle = fopen($filename, "r");
@@ -14,9 +10,16 @@ $talk_ideas = explode("\n", $contents);
 array_pop($talk_ideas); // Get rid of blank last line
 $talk_len = count($talk_ideas);
 $selected = rand(0, $talk_len-1);
-echo '<center><h3>You should do a LUG talk on:</h3>';
-echo '<h1>'.$talk_ideas[$selected].'</h1>';
-?>
+
+echo <<<HTML
+<html>
+<head>
+<title>You should do a LUG talk on...</title>
+</head>
+<body>
+<br>
+<center><h3>You should do a LUG talk on:</h3>
+<h1>{$talk_ideas[$selected]}</h1>
 <br><br><br><br><br><br><br>
 <form action="addnewidea.php">New idea:<input type="text" name="new_idea" maxlength=30><input type="submit" name="submit"></form>
 <br><br>
@@ -24,3 +27,5 @@ echo '<h1>'.$talk_ideas[$selected].'</h1>';
 </center>
 </body>
 </html>
+HTML;
+?>
